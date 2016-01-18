@@ -1,0 +1,72 @@
+<?php require "head.html"; ?>
+<?php require "side.html"; ?>
+
+<div class="content">
+    <div class="header">
+        <h1 class="page-title">商品修改</h1>
+    </div>
+    <ul class="breadcrumb">
+        <li><a href="/product">商品操作</a> <span class="divider">/</span></li>
+        <li class="active">商品列表</li>
+    </ul>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="well">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#">列表信息</a></li>
+                </ul>
+
+                <table>
+                    <th>商品名</th>
+                    <th>价格</th>
+                    <th>数量</th>
+                    <th>登记时间</th>
+                    <th>上传图片</th>
+                <?php
+                foreach($productData as $v){
+                    echo "<tr>".
+                    "<td>".$v['product_name']."</td>".
+                    "<td>".$v['money']."</td>".
+                    "<td>".$v['amount']."</td>".
+                    "<td>".$v['reg_time']."</td>".
+                    "<td><button class='btn' onclick='doUpload(\"img\", \"{$v['product_uuid']}\", this)'>上传</button>"."</td>".
+                    "</tr>";
+                } ?>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/lib/jquery/jquery.upload.js"></script>
+<script>
+function doUpload(filetype, filename, select) {
+    //wait等待
+    $(select).parent().find('img').attr('src', '/manage/static/images/wait.gif');
+
+    // 上传方法
+    $.upload({
+            // 上传地址
+        url: '/product/upload',
+        // 文件域名字
+        fileName: filename,
+        // 其他表单数据
+        params: {'filetype': filetype },
+        // 上传完成后, 返回json, text
+        dataType: 'text',
+        // 上传之前回调,return true表示可继续上传
+        onSend: function() {
+            return true;
+        },
+        // 上传之后回调
+        onComplate: function(data) {
+            console.log(data);
+        }
+    });
+}
+    
+</script>
+
+
+<?php require "foot.html"; ?>
