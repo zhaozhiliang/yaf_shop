@@ -4,6 +4,7 @@
    {
       public function init()
       {
+
          $this->_item = new ProductModel();
       }
 
@@ -20,6 +21,7 @@
 
       function getAction()
       {
+
          $product_name = $this->getRequest()->getQuery("name");
          if($item = $this->_item->select($product_name)){
             $this->getView()->assign("item", $item[0]);

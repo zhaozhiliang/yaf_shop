@@ -15,14 +15,12 @@
       private $_config;
 
       public function _initConfig() {
-         echo 'a';
          //把配置保存起来
          $this->_config = Yaf_Application::app()->getConfig();
          Yaf_Registry::set('config', $this->_config);
       }
 
       public function _initPlugin(Yaf_Dispatcher $dispatcher) {
-         echo 'b';
          $userPlugin = new UserPlugin();
          $dispatcher->registerPlugin($userPlugin);
 
@@ -58,13 +56,13 @@
          Yaf_Registry::set('dispatcher', $dispatcher);
       }
 
+      /**
+       * 添加一个数据库操作的实例到 “对象仓库”
+       * @param Yaf_Dispatcher $dispatcher
+       */
       public function _initDb(Yaf_Dispatcher $dispatcher){
-         //$this->_db = new Db($this->_config->mysql->read->toArray());
          $this->_db = new medoo($this->_config->mysql->read->toArray());
-          //var_dump($this->_db);
          Yaf_Registry::set('_db', $this->_db);
-       // $aa = new Db();
-         //var_dump($aa);
       }
 
       public function _initMemcached(Yaf_Dispatcher $dispatcher){

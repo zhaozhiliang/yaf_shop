@@ -40,7 +40,7 @@
                   $order_serial = date('U').'98'.rand(10000,99999);
                   Yaf_Session::getInstance()->set("order_serial",$order_serial);
                }
-
+               var_dump(Yaf_Session::getInstance());
                // exit("登录成功！");
                exit($this->_util->ret_json(0,"登陆成功"));
             }
