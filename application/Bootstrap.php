@@ -15,12 +15,14 @@
       private $_config;
 
       public function _initConfig() {
+         echo 'a';
          //把配置保存起来
          $this->_config = Yaf_Application::app()->getConfig();
          Yaf_Registry::set('config', $this->_config);
       }
 
       public function _initPlugin(Yaf_Dispatcher $dispatcher) {
+         echo 'b';
          $userPlugin = new UserPlugin();
          $dispatcher->registerPlugin($userPlugin);
 
@@ -57,9 +59,8 @@
       }
 
       public function _initDb(Yaf_Dispatcher $dispatcher){
-         // var_dump($this->_config->mysql->read->toArray());
-         $this->_db = new Db($this->_config->mysql->read->toArray());
-         //$this->_db = new medoo($this->_config->mysql->read->toArray());
+         //$this->_db = new Db($this->_config->mysql->read->toArray());
+         $this->_db = new medoo($this->_config->mysql->read->toArray());
           //var_dump($this->_db);
          Yaf_Registry::set('_db', $this->_db);
        // $aa = new Db();
@@ -86,7 +87,7 @@
 
       /*protected function _initTwig(Yaf_Dispatcher $dispatcher)
       {
-         $dispatcher->setView(new \Suin\Yaf\Twig\Twig(APPLICATION_PATH.'/application/views', $this->_config->twig->toArray()));
+         $dispatcher->setView(new \Suin\Yaf\Twig\Twig(APP_PATH.'/application/views', $this->_config->twig->toArray()));
          // $view = new Twig_Adapter(ROOT_DIR . "/admin/views/", Yaf_Registry::get("config")->get("twig")->toArray());
          // $dispatcher->setView($view);
       }*/

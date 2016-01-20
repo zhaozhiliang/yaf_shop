@@ -7,7 +7,7 @@ class LayoutPlugin extends Yaf_Plugin_Abstract {
 
     public function __construct($layoutFile, $layoutDir=null){
         $this->_layoutFile = $layoutFile;
-        $this->_layoutDir = ($layoutDir) ? $layoutDir : APPLICATION_PATH.'/application/views';
+        $this->_layoutDir = ($layoutDir) ? $layoutDir : APP_PATH.'/application/views';
     }
 
     public function  __set($name, $value) {

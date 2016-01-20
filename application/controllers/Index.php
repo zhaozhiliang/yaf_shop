@@ -14,6 +14,7 @@
       */
       public function indexAction()
       {
+         echo 'w';
          $site = new OptionModel();
          $product = new ProductModel();
 
@@ -29,6 +30,9 @@
          $itemlist = $product->selectPage($page, $size);
          $maxNum   = $product->selectAll_num();
          $siteInfo = $site->selectAll();
+         echo '<pre>';
+         var_dump($siteInfo);
+         echo '</pre>';
 
          $this->getView()->assign("name",$siteInfo[0]['value']);
          $this->getView()->assign("desc",$siteInfo[1]['value']);
